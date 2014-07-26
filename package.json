@@ -2,8 +2,13 @@
     "name": "find",
     "version": "0.0.0",
     "main": "src/index",
+    "node": "lib/index",
     "description": "Find files and code",
     "engines": {
         "codebox": ">=1.0.0"
+    },
+    "dependencies": {
+        "q": "1.0.1",
+        "cfind": "0.2.0"
     }
 }
