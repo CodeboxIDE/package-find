@@ -32,6 +32,11 @@ define([
             }, {
                 template: fileTemplate,
                 placeholder: "Browse Files"
+            })
+            .then(function(file) {
+                return commands.run("file.open", {
+                    'path': file.get("path")
+                });
             });
         }
     });
