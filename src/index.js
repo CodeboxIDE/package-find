@@ -1,8 +1,9 @@
 define([
     "src/settings",
+    "src/views/results",
     "text!src/templates/file.html",
     "less!src/stylesheets/main.less"
-], function(settings, fileTemplate) {
+], function(settings, ResultsTab, fileTemplate) {
     var _ = codebox.require("hr/utils");
     var commands = codebox.require("core/commands");
     var rpc = codebox.require("core/rpc");
@@ -53,17 +54,29 @@ define([
             "shift+mod+f"
         ],
         run: function() {
+            var tab;
+
             return dialogs.prompt("Find", lastFind)
             .then(function(query) {
                 lastFind = query;
 
+                tab = codebox.tabs.add(ResultsTab, {
+                    query: query,
+                    result: null
+                }, {
+                    title: "Find Results"
+                });
+
                 return rpc.execute("find/code", {
                     query: query,
                     start: 0,
-                    limit: settings.data.get("code.limit")
-                })
+                    maxresults: settings.data.get("code.limit")
+                });
             })
-            .then(console.log.bind(console));
+            .then(function(result) {
+                tab.options.result = result;
+                tab.update();
+            });
         }
     });
 });

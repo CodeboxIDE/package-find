@@ -10,3 +10,42 @@
         }
     }
 }
+
+.component-tab-results {
+    padding: 4px;
+    .user-select(text);
+
+    .results-header {
+        margin-bottom: 20px;
+    }
+    .results-footer {
+        margin-top: 20px;
+    }
+    .results-body {
+        .result-file {
+            margin: 10px 0px;
+
+            .file-lines {
+                list-style: none;
+                margin: 0px;
+                padding: 0px;
+                margin-left: 20px;
+
+                .number {
+                    color: @color-9;
+                    width: 40px;
+                    text-align: right;
+                    display: inline-block;
+                }
+
+                .separator {
+                    white-space: pre;
+                    display: inline-block;
+                    width: 20px;
+                    text-align: left;
+                }
+            }
+        }
+    }
+}
+

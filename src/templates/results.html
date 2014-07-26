@@ -1,0 +1,28 @@
+<% if (result) { %>
+<div class="results-header">
+Searching files for "<%- query %>":
+</div>
+
+<div class="results-body">
+<% _.each(result.results, function(lines, filename) { %>
+    <div class="result-file">
+        <div class="path"><%- filename %></div>
+        <ul class="file-lines">
+            <% _.each(lines, function(line) { %>
+            <li>
+                <span class="number"><%- line.lineNumber %></span>
+                <span class="separator"><%- (line.occurence? ":" : " ") %></span>
+                <span class="line"><%- line.line %></span>
+            </li>
+            <% }); %>
+        </ul>
+    </div>
+<% }); %>
+</div>
+
+<div class="results-footer">
+<%- result.matches %> matches across files <%- result.files %>
+</div>
+<% } else { %>
+
+<% } %>
