@@ -1,7 +1,8 @@
 define([
+    "src/settings",
     "text!src/templates/file.html",
     "less!src/stylesheets/main.less"
-], function(fileTemplate) {
+], function(settings, fileTemplate) {
     var _ = codebox.require("hr/utils");
     var commands = codebox.require("core/commands");
     var rpc = codebox.require("core/rpc");
@@ -18,7 +19,7 @@ define([
                 return rpc.execute("find/files", {
                     query: query,
                     start: 0,
-                    limit: 100
+                    limit: settings.data.get("files.limit")
                 })
                 .get("results")
                 .then(function(results) {

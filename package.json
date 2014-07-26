@@ -9,5 +9,9 @@
     },
     "dependencies": {
         "cfind": "0.2.0"
+    },
+    "packageDependencies": {
+        "tabs": "CodeboxIDE/package-tabs",
+        "settings": "CodeboxIDE/package-settings"
     }
 }
