@@ -1,3 +1,3 @@
-# About Dialog
+# Find Files & Codes
 
-This package contains the command to show informations about Codebox.
+This package contains the commands and service to find files and code inside the workspace.
