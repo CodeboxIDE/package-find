@@ -9,7 +9,7 @@ define([
 
     commands.register({
         id: "find.files",
-        title: "Find: Browse Files",
+        title: "Find: Jump to file",
         shortcuts: [
             "mod+p"
         ],
@@ -31,7 +31,7 @@ define([
                 });
             }, {
                 template: fileTemplate,
-                placeholder: "Browse Files"
+                placeholder: "Jump to a file"
             })
             .then(function(file) {
                 return commands.run("file.open", {
