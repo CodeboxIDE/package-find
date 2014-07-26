@@ -8,6 +8,9 @@ define([
     var rpc = codebox.require("core/rpc");
     var dialogs = codebox.require("utils/dialogs");
 
+    var lastFind = "";
+
+    // Browse/Find files
     commands.register({
         id: "find.files",
         title: "Find: Jump to file",
@@ -39,6 +42,28 @@ define([
                     'path': file.get("path")
                 });
             });
+        }
+    });
+
+    // Browse/Find code
+    commands.register({
+        id: "find.code",
+        title: "Find: Find in Files",
+        shortcuts: [
+            "shift+mod+f"
+        ],
+        run: function() {
+            return dialogs.prompt("Find", lastFind)
+            .then(function(query) {
+                lastFind = query;
+
+                return rpc.execute("find/code", {
+                    query: query,
+                    start: 0,
+                    limit: settings.data.get("code.limit")
+                })
+            })
+            .then(console.log.bind(console));
         }
     });
 });
