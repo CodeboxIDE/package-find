@@ -1,15 +1,15 @@
 <% if (result) { %>
 <div class="results-header">
-Searching files for "<%- query %>":
+Searching files for "<%- args.query %>":
 </div>
 
 <div class="results-body">
 <% _.each(result.results, function(lines, filename) { %>
-    <div class="result-file">
+    <div class="result-file" data-file="<%- filename %>">
         <div class="path"><%- filename %></div>
         <ul class="file-lines">
             <% _.each(lines, function(line) { %>
-            <li>
+            <li data-file="<%- filename %>" data-line="<%- line.lineNumber %>">
                 <span class="number"><%- line.lineNumber %></span>
                 <span class="separator"><%- (line.occurence? ":" : " ") %></span>
                 <span class="line"><%- line.line %></span>

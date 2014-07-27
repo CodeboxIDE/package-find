@@ -74,7 +74,7 @@ define([
                 args.limit = settings.data.get("code.limit");
 
                 tab = codebox.tabs.add(ResultsTab, {
-                    query: args.query,
+                    args: args,
                     result: null
                 }, {
                     title: "Find Results"
