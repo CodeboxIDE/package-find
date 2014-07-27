@@ -36,7 +36,10 @@ define([
                 });
             }, {
                 template: fileTemplate,
-                placeholder: "Jump to a file"
+                placeholder: "Jump to a file",
+                textIndex: function(model) {
+                    return model.get("path")
+                }
             })
             .then(function(file) {
                 return commands.run("file.open", {
