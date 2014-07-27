@@ -14,6 +14,9 @@
 .component-tab-results {
     padding: 4px 8px;
     .user-select(text);
+    overflow-y: auto;
+    width: 100%;
+    height: 100%;
 
     .results-header {
         margin-bottom: 20px;
@@ -43,6 +46,10 @@
                     display: inline-block;
                     width: 20px;
                     text-align: left;
+                }
+
+                .line {
+                    white-space: pre;
                 }
             }
         }
