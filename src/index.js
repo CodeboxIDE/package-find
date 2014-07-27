@@ -9,7 +9,7 @@ define([
     var rpc = codebox.require("core/rpc");
     var dialogs = codebox.require("utils/dialogs");
 
-    var lastFind = "";
+    var lastFind = {};
 
     // Browse/Find files
     commands.register({
@@ -56,27 +56,37 @@ define([
         run: function() {
             var tab;
 
-            return dialogs.prompt("Find", lastFind)
-            .then(function(query) {
-                lastFind = query;
+            return dialogs.schema({
+                "title": "Find in Files",
+                "type": "object",
+                "properties": {
+                    "query": {
+                        "description": "Find",
+                        "type": "string"
+                    },
+                    "root": {
+                        "description": "Where",
+                        "type": "string"
+                    }
+                }
+            }, lastFind)
+            .then(function(args) {
+                args.limit = settings.data.get("code.limit");
 
                 tab = codebox.tabs.add(ResultsTab, {
-                    query: query,
+                    query: args.query,
                     result: null
                 }, {
                     title: "Find Results"
                 });
 
-                return rpc.execute("find/code", {
-                    query: query,
-                    start: 0,
-                    maxresults: settings.data.get("code.limit")
-                });
+                return rpc.execute("find/code", args);
             })
             .then(function(result) {
                 tab.options.result = result;
                 tab.update();
-            });
+            })
+            .fail(dialogs.error);
         }
     });
 });
