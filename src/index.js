@@ -80,13 +80,12 @@ define([
                     title: "Find Results"
                 });
 
-                return rpc.execute("find/code", args);
+                return rpc.execute("find/code", args).fail(dialogs.error);
             })
             .then(function(result) {
                 tab.options.result = result;
                 tab.update();
-            })
-            .fail(dialogs.error);
+            });
         }
     });
 });
