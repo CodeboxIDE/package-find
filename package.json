@@ -11,7 +11,6 @@
         "cfind": "0.3.0"
     },
     "packageDependencies": {
-        "tabs": "CodeboxIDE/package-tabs",
-        "settings": "CodeboxIDE/package-settings"
+        "tabs": "CodeboxIDE/package-tabs"
     }
 }
