@@ -1,16 +1,26 @@
 {
     "name": "find",
     "version": "0.0.0",
-    "main": "src/index",
-    "node": "lib/index",
+    "browser": "./src/index.js",
+    "main": "./lib/index.js",
     "description": "Find files and code",
     "engines": {
         "codebox": ">=1.0.0"
     },
-    "dependencies": {
-        "cfind": "0.3.0"
-    },
     "packageDependencies": {
         "tabs": "CodeboxIDE/package-tabs"
+    },
+    "dependencies": {
+        "cfind": "0.3.0",
+        "stringify": "3.1.0"
+    },
+    "browserify": {
+        "transform": [
+            [
+                "stringify", {
+                    "extensions": [".html"]
+                }
+            ]
+        ]
     }
 }

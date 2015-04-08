@@ -1,32 +1,31 @@
-define([
-    "text!src/templates/results.html"
-], function(resultsTemplate) {
-    var $ = codebox.require("hr/dom");
-    var _ = codebox.require("hr/utils");
-    var commands = codebox.require("core/commands");
+var resultsTemplate = require("../templates/results.html");
 
-    var ResultsTab = codebox.tabs.Panel.extend({
-        className: "component-tab-results",
-        template: resultsTemplate,
-        templateContext: function() {
-            return this.options;
-        },
-        events: {
-            'dblclick *[data-file]': "onOpenFile"
-        },
+var $ = codebox.require("jquery");
+var _ = codebox.require("hr.utils");
+var View = codebox.require("hr.view");
+var commands = codebox.require("core/commands");
 
-        onOpenFile: function(e) {
-            if (e) {
-                e.preventDefault();
-                e.stopPropagation();
-            }
+var ResultsTab = codebox.tabs.Panel.inherit(View.Template).extend({
+    className: "component-tab-results",
+    template: resultsTemplate,
+    templateContext: function() {
+        return this.options;
+    },
+    events: {
+        'dblclick *[data-file]': "onOpenFile"
+    },
 
-            commands.run("file.open", {
-                'path': (this.options.args.root || ".")+"/"+$(e.currentTarget).data("file"),
-                'line': parseInt($(e.currentTarget).data("line") || 0)
-            });
+    onOpenFile: function(e) {
+        if (e) {
+            e.preventDefault();
+            e.stopPropagation();
         }
-    })
 
-    return ResultsTab;
-});
+        commands.run("file.open", {
+            'path': (this.options.args.root || ".")+"/"+$(e.currentTarget).data("file"),
+            'line': parseInt($(e.currentTarget).data("line") || 0)
+        });
+    }
+})
+
+module.exports = ResultsTab;
