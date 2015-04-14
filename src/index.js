@@ -91,3 +91,19 @@ commands.register({
         });
     }
 });
+
+if (codebox.menubar) {
+    codebox.menubar.createMenu({
+        caption: "Find",
+        items: [
+            {
+                caption: "Jump to Files",
+                command: "find.files"
+            },
+            {
+                caption: "Find in Files",
+                command: "find.code"
+            }
+        ]
+    });
+}
