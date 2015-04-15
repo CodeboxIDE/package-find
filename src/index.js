@@ -97,6 +97,23 @@ if (codebox.menubar) {
         caption: "Find",
         items: [
             {
+                caption: "Find...",
+                command: "editor.find"
+            },
+            {
+                caption: "Find Next",
+                command: "editor.findnext"
+            },
+            {
+                caption: "Find Previous",
+                command: "editor.findprevious"
+            },
+            {
+                caption: "Replace...",
+                command: "editor.replace"
+            },
+            { type: "separator" },
+            {
                 caption: "Jump to Files",
                 command: "find.files"
             },
