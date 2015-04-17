@@ -5,7 +5,7 @@
     "main": "./lib/index.js",
     "description": "Find files and code",
     "engines": {
-        "codebox": ">=1.0.0"
+        "codebox": ">=1.0.0-alpha"
     },
     "packageDependencies": {
         "tabs": "CodeboxIDE/package-tabs"
